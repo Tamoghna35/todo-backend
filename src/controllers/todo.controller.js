@@ -35,6 +35,7 @@ const getAllTasksforUser = asyncHandler(async (req, res) => {
 
     const allTasks = task.map((task) => (
         {
+            _id: task._id,
             title: task.title,
             description: task.description,
             status: task.status
@@ -49,7 +50,33 @@ const getAllTasksforUser = asyncHandler(async (req, res) => {
 });
 
 const updateTask = asyncHandler(async (req, res) => {
+    const { task_id, title, description, status } = req.body;
+    if (!task_id || !title || !description || !status) {
+        throw new ApiError(400, "All data are required");
+    }
     
- })
+    const updatedTask = await Todo.findByIdAndUpdate(task_id,
+        {
+            $set: {
+                title,
+                description,
+                status
+            }
+        },
+        { new: true }
+    )
 
-export { createTodo,getAllTasksforUser,updateTask };
+    return res.status(200)
+    .json(new ApiResponse(200, updatedTask, "Task updated successfully"));
+})
+
+const deleteTask = asyncHandler(async (req, res) => {
+    const { task_id } = req.body;
+    if(!task_id) {
+        throw new ApiError(400, "Task id is required");
+    }
+    await Todo.findByIdAndDelete(task_id);
+    return res.status(200)
+    .json(new ApiResponse(200, {}, "Task deleted successfully"));
+ })
+export { createTodo,getAllTasksforUser,updateTask,deleteTask };
