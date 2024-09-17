@@ -5,3 +5,7 @@
 2024-09-11T12:08:34.408Z warn: POST /api/v1/todo/updateTask 500 Internal Server Error
 2024-09-11T12:12:19.578Z warn: POST /api/v1/todo/updateTask 500 Internal Server Error
 2024-09-11T13:20:39.663Z warn: POST /api/v1/todo/updateTask 500 Internal Server Error
+2024-09-11T14:01:25.151Z info: POST /api/v1/users/logIn 200 OK
+2024-09-11T14:02:32.743Z info: POST /api/v1/todo/createTodo 201 Created
+2024-09-11T14:03:13.559Z info: GET /api/v1/todo/getAllTasksforUser 200 OK
+2024-09-17T06:07:47.316Z info: OPTIONS /api/v1/users/logIn 200 OK
