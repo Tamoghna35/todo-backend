@@ -4,17 +4,17 @@ import { ApiError } from "../utils/apiError.js";
 import { ApiResponse } from "../utils/apiResponse.js";
 
 const createTodo = asyncHandler(async (req, res) => {
-    console.log("User request Id ==> ", req.verifyuser._id);
-    
+    console.log("User request Id ==> ",  req.verifyuser._id);
+    const user_id = req.verifyuser._id;
     const { title, description, status } = req.body;
     if(!title || !description || !status) {
-        return next(new ApiError(400, "All data are required"));
+        throw new ApiError(400, "All data are required");
     }
     const existingTask = await Todo.findOne({
-        $and: [{ title }, { description }]
+        $and: [{ title }, { description },{user_id}]
     })
     if(existingTask) {
-        return next(new ApiError(409, "Task with same title and description is already exist"));
+        throw new ApiError(409, "Task with same title and description is already exist");
     }
     const newTask = await Todo.create({
         title,
@@ -23,7 +23,7 @@ const createTodo = asyncHandler(async (req, res) => {
         user: req.verifyuser._id
     })
     if(!newTask) {
-        return next(new ApiError(400, "Task is unable to create"));
+        throw new ApiError(400, "Task is unable to create");
     }
     return res.status(201)
     .json(new ApiResponse(201, newTask, "Task created successfully"));
