@@ -23,4 +23,15 @@
 2024-09-16T19:20:01.809Z info: POST /api/v1/users/registerUser 201 Created
 2024-09-16T19:22:08.765Z info: OPTIONS /api/v1/users/registerUser 200 OK
 2024-09-16T19:22:51.185Z info: POST /api/v1/users/registerUser 201 Created
-2024-09-16T19:33:24.852Z info: POST /api/v1/users/registerUser 201 Created
+2024-09-17T14:47:55.637Z warn: POST /api/v1/todo/createTodo 500 Internal Server Error
+2024-09-17T14:49:33.512Z info: POST /api/v1/users/logIn 200 OK
+2024-09-17T14:51:39.480Z info: POST /api/v1/users/logIn 200 OK
+2024-09-17T14:55:25.709Z warn: POST /api/v1/todo/createTodo 409 Conflict
+2024-09-17T14:55:44.316Z info: POST /api/v1/todo/createTodo 201 Created
+2024-09-17T14:55:48.256Z warn: POST /api/v1/todo/createTodo 409 Conflict
+2024-09-17T14:55:59.826Z info: POST /api/v1/todo/createTodo 201 Created
+2024-09-17T15:02:42.494Z info: POST /api/v1/users/logout 200 OK
+2024-09-17T15:02:54.105Z warn: POST /api/v1/todo/createTodo 401 Unauthorized
+2024-09-17T15:03:06.287Z info: POST /api/v1/users/logIn 200 OK
+2024-09-17T15:05:26.963Z warn: POST /api/v1/todo/createTodo 409 Conflict
+2024-09-17T15:06:59.838Z info: POST /api/v1/todo/createTodo 201 Created
