@@ -2,7 +2,12 @@ import asyncHandler from "../utils/asyncHandler.js";
 import jwt from "jsonwebtoken"
 import { User } from "../models/user.model.js";
 import { ApiError } from "../utils/apiError.js";
+import dotenv from "dotenv"
 
+dotenv.config({
+    path: './.env'
+})
+console.log("AccessToken SEcret in auth.middleware ==>", process.env.ACCESS_TOKEN_SECRET);
 
 const verifyJWT = asyncHandler(async (req, _, next) => {
     // console.log("Cookies===>", req.cookies);

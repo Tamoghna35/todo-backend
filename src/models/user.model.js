@@ -1,6 +1,13 @@
 import mongoose, { Schema } from "mongoose";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt"
+import dotenv from "dotenv"
+
+dotenv.config(
+    { path: './.env' }
+)
+
+console.log("Refresh token SEcret in user ==> ", process.env.REFRESH_TOKEN_SECRET);
 
 const userSchema = new Schema({
     name: {
@@ -20,7 +27,7 @@ const userSchema = new Schema({
         required: [true, 'Password is required']
     },
     refreshToken: {
-        type:String
+        type: String
     }
 }, { timestamps: true })
 
@@ -48,19 +55,21 @@ userSchema.methods.generateAccessToken = function () {
         {
             expiresIn: process.env.ACCESS_TOKEN_EXPIARY
         }
-     )
+    )
 }
- 
+
 
 // generate refresh token
 
 userSchema.methods.generateRefreshToken = function () {
-  return jwt.sign(
+    return jwt.sign(
         {
             payload: {
                 _id: this._id,
             }
         },
+
+
         process.env.REFRESH_TOKEN_SECRET,
         {
             expiresIn: process.env.REFRESH_TOKEN_EXPIARY

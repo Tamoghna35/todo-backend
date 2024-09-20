@@ -6,9 +6,11 @@ dotenv.config({
     path:'./.env'
 })
 const PORT = process.env.PORT
+console.log("Port in index.js=>",PORT);
+
 connectDB()
     .then(() => {
-        app.listen(PORT || 8080, () => {
+        app.listen(PORT || 8088, () => {
             console.log(`Server Runnning at port at ${PORT}`);
             
         })

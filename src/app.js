@@ -5,12 +5,19 @@ import responseLogger from "./middlewares/loggerInfo.js"
 import userRouter from "./routes/user.route.js"
 import todoRouter from "./routes/todo.route.js"
 import globalErrorHandler from "./middlewares/globalErrorHandler.js"
+import dotenv from "dotenv"
+dotenv.config({
+    path: './.env'
+})
 
 const app = express()
 
+
+console.log("CORS ORIGIN==>", process.env.CORS_ORIGIN);
+
 app.use(cors({
-    // origin: process.env.CORS_ORIGIN,
-    origin: '*',
+    origin: process.env.CORS_ORIGIN,
+    // origin: '*',
     credentials: true
 }))
 
