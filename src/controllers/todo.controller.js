@@ -11,8 +11,10 @@ const createTodo = asyncHandler(async (req, res) => {
         throw new ApiError(400, "All data are required");
     }
     const existingTask = await Todo.findOne({
-        $and: [{ title }, { description },{user_id}]
+        $or: [{ title }, { description },{user_id}]
     })
+    console.log("Existiing Task ===>", existingTask );
+    
     if(existingTask) {
         throw new ApiError(409, "Task with same title and description is already exist");
     }
@@ -22,6 +24,7 @@ const createTodo = asyncHandler(async (req, res) => {
         status,
         user: req.verifyuser._id
     })
+    console.log("New Task ===>", newTask)
     if(!newTask) {
         throw new ApiError(400, "Task is unable to create");
     }
