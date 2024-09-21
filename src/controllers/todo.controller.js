@@ -11,7 +11,7 @@ const createTodo = asyncHandler(async (req, res) => {
         throw new ApiError(400, "All data are required");
     }
     const existingTask = await Todo.findOne({
-        $or: [{ title }, { description },{user_id}]
+        $and        : [{ title },{user_id}]
     })
     console.log("Existiing Task ===>", existingTask );
     
